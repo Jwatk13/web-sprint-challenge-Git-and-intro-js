@@ -208,18 +208,22 @@ Practice accessing data above by console.log-ing following items:
 (no functions needed) */
 
 //(1) Name of the first artist (0th index) in the array
-
+// console.log(artists[0]["name"]);
 
 
 //(2) Bio of the third artist (2nd index) in the array 
-
+// console.log(artists[2]["bio"]);
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 2 (not auto tested): 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 (no function needed) 
 There is a typo in your dataset 😱 The 9th artist, Vincent Van Gogh is currently Vincent Van Dough. Fix this issue and console.log() to check your work. */
-
-
+for (let i = 0; i < artists.length; i++) {
+  if (artists[i].name === "Vincent van Dough") {
+    artists[i].name = "Vincent Van Gogh";
+  }
+}
+// console.log(artists[8]["name"]);
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 3: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀  
 Use getArtistByIndex to do the following:
@@ -230,10 +234,10 @@ Use getArtistByIndex to do the following:
 
 🌟 EXAMPLE: if getArtistByIndex is invoked with the artists array and the number 0, it will return `the artist at index 0 is Amedeo Modigliani` */
 
-function getArtistByIndex(/*Your Code Here*/) {
-  /*Your Code Here*/
+function getArtistByIndex(array, index) {
+  return `the artist at index ${[index]} is ${array[index].name}`
 }
-
+// console.log(getArtistByIndex(artists, 0));
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
@@ -244,31 +248,42 @@ Use copy to do the following:
 🌟 EXAMPLE of return: ["Amedeo Modigliani", "Vasiliy Kandinskiy", "Diego Rivera"....]
 */
 
-function listOfNames(/*Your Code Here*/) {
-  /*Your Code Here*/
+function listOfNames(array) {
+  const newArray = [...array];//currently have a copy of artists array at this point.
+  for (let i = 0; i < newArray.length; i++) {//loops through the copy of artists array.
+    if (newArray[i] !== ["name"]) {
+      newArray[i] = newArray[i].name;
+    }
+
+  }
+      return newArray;
 }
+// console.log(listOfNames(artists));
 
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Use removeArtist to do the following:
-1. Receive the artist array as an argument passed from the FIRST parameter
-2. Receive a number, which is the desired index in the array, as an argument passed from the SECOND parameter
-3. Create a new array that is a copy of the parameter array 
+*1. Receive the artist array as an argument passed from the FIRST parameter
+*2. Receive a number, which is the desired index in the array, as an argument passed from the SECOND parameter
+*3. Create a new array that is a copy of the parameter array 
 4. Remove an artist from the copied array at the desired index
 5. Return the resulting copied array
 🌟 EXAMPLE: if removeArtist is invoked with the artists array and the number 0, it will return the resulting array with Amedeo Modigliani removed from our dataset. */
 
-function removeArtist(/*Your Code Here*/) {
-  /*Your Code Here*/
+function removeArtist(array, index) {
+  const newArtists = [...array];
+  newArtists.splice(index, 1);
+  return newArtists
 }
-
+// console.log(removeArtist(artists, 0));
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Use addArtist to do the following: 
 1. Receive the the artist array as an argument passed from the FIRST parameter 
-2. Recieve a string (name), a string (years), a string (genre), a string (nationality), and a string (bio) as arguments passed from the SECOND, THIRD, FOURTH, FIFTH, and SIXTH parameters, repsectively.
+2. Recieve a string (name), a string (years), a string (genre), a string (nationality), and a string (bio) as arguments passed from the SECOND, THIRD, FOURTH, FIFTH, 
+   and SIXTH parameters, repsectively.
 3. Create an object with the following format:
   { 
     name: Your Name Here, 
@@ -280,10 +295,11 @@ Use addArtist to do the following:
 4. Return the array
 🌟 EXAMPLE: Invoking addArtist(artists, 'John Doe', '1988-2022', 'Full Stack Development', 'African American', 'I have a background in customer service at Big Retail Chain. I am attending BloomTech to become a Frontend Developer.') should return the artists array with the above object added to the end of the array. */
 
-function addArtist(/*Your Code Here*/) {
-  /*Your Code Here*/
+function addArtist(array, name, years, genre, nationality, bio) {
+  array.push({name, years, genre, nationality, bio});
+  return array;
 }
-
+// console.log(addArtist(artists, 'John Doe', '1988-2022', 'lorem ipsum', 'American', 'lorem ipsum'));
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 7: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
